@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1><b>
+            <%= title %>
+        </b></h1>
+
+    <form enctype="multipart/form-data" action="/fileupload" method="post">
+        <tr>
+            <th>Select File</th>
+            <td>
+                <input type="file" name="sample_image" />
+            </td>
+            <td>
+                <input type="submit" name="submit" value="Upload Image" />
+            </td>
+        </tr>
+        <% if(message.length> 0) { %>
+
+            File is uploaded successfully
+
+            <img src="./upload/<%= message %>" />
+            <% } %>
+    </form>
+</body>
+
+</html>

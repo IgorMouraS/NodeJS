@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <% if(action==='add' ) { %>
+        <form method="post" action="add_sample_data">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age">
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <input type="submit" name="submit_button" value="Add">
+        </form>
+        <% } else if (action==='edit' ) {%>
+
+            <form method="post" action="/sample_data/edit/<%= sampleData.id %>">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name" value="<%= sampleData.first_name %>">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name" value="<%= sampleData.last_name %>">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" value="<%= sampleData.age %>">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <input type="submit" name="submit_button" value="Edit">
+            </form>
+            <script>
+                document.getElementById('gender').value = "<%= sampleData.gender %>";
+            </script>
+
+            <% } else {%>
+
+                <% if(message.length > 0) { %>
+                        <%= message %>
+                        <br>
+                    <% } %>
+
+                            <a href="/sample_data/add">Add</a>
+                            <table>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Action</th>
+                                </tr>
+                                <% if(sampleData.length> 0){
+                                    sampleData.forEach(function(data){
+                                    %>
+                                    <tr>
+                                        <td>
+                                            <%= data.first_name %>
+                                        </td>
+                                        <td>
+                                            <%= data.last_name %>
+                                        </td>
+                                        <td>
+                                            <%= data.age %>
+                                        </td>
+                                        <td>
+                                            <%= data.gender %>
+                                        </td>
+                                        <td> <a href="/sample_data/edit/<%= data.id%>">Edit</a></td>
+                                        <td> <a href="/sample_data/delete/<%= data.id%>">Delete</a></td>
+                                    </tr>
+                                    <% }); } else { %>
+                                        <tr>
+                                            <td colspan="5">No Data Fount</td>
+                                        </tr>
+                                        <% } %>
+                            </table>
+                            <% }%>
+</body>
+
+</html>
