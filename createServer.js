@@ -7,7 +7,7 @@ const http = require("http");
 http.createServer((request, response) => {
 
     response.writeHead(200, {
-        'Content-Type' : 'text/html'
+        'Content-Type': 'text/html'
     });
 
     response.write('<h1>Hello World</h1>');
