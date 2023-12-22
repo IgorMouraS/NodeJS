@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Node.js Server Side Validation</title>
+</head>
+<body>
+	<h1>Node.js Server Side Validation</h1>
+	<form action="/send" method="post">
+		<label for="name">Name</label>
+		<input type="text" name="name">
+		<% if(errors && errors.name) { %>
+			<span><%= errors.name.msg %></span>
+			<% } %>
+		<label for="email">Email</label>
+		<input type="email" name="email">
+		<% if(errors && errors.email) { %>
+			<span><%= errors.email.msg %></span>
+			<% } %>
+		<label for="subject">Subject</label>
+		<input type="text" name="subject">
+		<% if(errors && errors.subject) { %>
+			<span><%= errors.subject.msg %></span>
+			<% } %>
+		<label for="message">Message</label>
+		<textarea name="message"></textarea>
+		<% if(errors && errors.message) { %>
+			<span><%= errors.message.msg %></span>
+			<% } %>
+		<button type="submit">Send Message</button>
+
+	</form>
+</body>
+</html>
